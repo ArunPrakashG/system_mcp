@@ -47,9 +47,10 @@ This repo includes two GitHub Actions:
 - Release on Tag: `.github/workflows/release-extension.yml` runs when you push a tag matching `vscode-v*`.
 
 Release workflow steps:
-1) Build and package `system-mcp-vscode.vsix`.
-2) Create a GitHub Release for the tag and attach the VSIX file.
-3) Optionally publish to the Marketplace if `VSCE_PAT` is configured.
+
+1. Build and package `system-mcp-vscode.vsix`.
+2. Create a GitHub Release for the tag and attach the VSIX file.
+3. Optionally publish to the Marketplace if `VSCE_PAT` is configured.
 
 ### Tagging format
 

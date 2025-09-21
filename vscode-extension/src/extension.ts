@@ -1,6 +1,6 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse.js';
+import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import * as vscode from 'vscode';
 
@@ -92,7 +92,7 @@ export async function activate(context: vscode.ExtensionContext) {
             if (content && content.type === 'image') {
                 const dataUri = content.data.startsWith('data:') ? content.data : `data:image/${content.mimeType ?? 'png'};base64,${content.data}`;
                 const panel = vscode.window.createWebviewPanel('systemMcpScreenshot', 'System MCP Screenshot', vscode.ViewColumn.Active, {});
-                    panel.webview.html = `<!DOCTYPE html><html><body style="margin:0"><img src="${dataUri}" style="max-width:100%; max-height:100vh;" /></body></html>`;
+                panel.webview.html = `<!DOCTYPE html><html><body style="margin:0"><img src="${dataUri}" style="max-width:100%; max-height:100vh;" /></body></html>`;
             } else {
                 vscode.window.showWarningMessage('Screenshot tool did not return an image');
             }
@@ -128,7 +128,7 @@ class ToolItem extends vscode.TreeItem {
 class ToolsProvider implements vscode.TreeDataProvider<ToolItem> {
     private _onDidChangeTreeData = new vscode.EventEmitter<void>();
     readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
-    constructor(private loader: () => Promise<Tool[]>, private runner: (toolName: string) => Promise<void>) {}
+    constructor(private loader: () => Promise<Tool[]>, private runner: (toolName: string) => Promise<void>) { }
     async refresh() { this._onDidChangeTreeData.fire(); }
     getTreeItem(element: ToolItem): vscode.TreeItem { return element; }
     async getChildren(): Promise<ToolItem[]> {
@@ -151,7 +151,7 @@ function showToolResult(title: string, result: any) {
     if (content?.type === 'image') {
         const dataUri = content.data?.startsWith('data:') ? content.data : `data:image/${content.mimeType ?? 'png'};base64,${content.data}`;
         const panel = vscode.window.createWebviewPanel('systemMcpResult', `Tool: ${title}`, vscode.ViewColumn.Active, {});
-            panel.webview.html = `<!DOCTYPE html><html><body style="margin:0"><img src="${dataUri}" style="max-width:100%; max-height:100vh;" /></body></html>`;
+        panel.webview.html = `<!DOCTYPE html><html><body style="margin:0"><img src="${dataUri}" style="max-width:100%; max-height:100vh;" /></body></html>`;
     } else if (content?.type === 'text') {
         vscode.window.showInformationMessage(`${title}: ${content.text?.slice(0, 500)}`);
     } else {

@@ -2,14 +2,14 @@ name: Build VS Code Extension
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'vscode-extension/**'
-      - '.github/workflows/build-extension.yml'
+      - "vscode-extension/**"
+      - ".github/workflows/build-extension.yml"
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'vscode-extension/**'
+      - "vscode-extension/**"
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install deps
         working-directory: ./vscode-extension

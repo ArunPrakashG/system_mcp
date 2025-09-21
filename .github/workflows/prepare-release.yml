@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to bump (e.g., 0.1.1)'
+        description: "Version to bump (e.g., 0.1.1)"
         required: true
       tag:
-        description: 'Tag to create (e.g., vscode-v0.1.1)'
+        description: "Tag to create (e.g., vscode-v0.1.1)"
         required: true
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install deps
         working-directory: ./vscode-extension

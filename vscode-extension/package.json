@@ -1,74 +1,91 @@
 {
-    "name": "system-mcp-vscode",
-    "displayName": "System MCP (Windows)",
-    "publisher": "arunprakashg",
-    "description": "VS Code extension that connects to the System MCP Windows server to control cursor, windows, UIA, and screenshots.",
-    "version": "0.1.0",
-    "engines": {
-        "vscode": "^1.90.0"
-    },
+    "author": "",
     "categories": [
         "Other"
     ],
-    "main": "./dist/extension.js",
     "contributes": {
-            "viewsContainers": {
-                "activitybar": [
-                    {
-                        "id": "systemMcp",
-                        "title": "System MCP",
-                        "icon": "media/system-mcp.svg"
-                    }
-                ]
+        "commands": [
+            {
+                "command": "systemMcp.connect",
+                "title": "System MCP: Connect"
             },
+            {
+                "command": "systemMcp.tools.list",
+                "title": "System MCP: List Tools"
+            },
+            {
+                "command": "systemMcp.tools.screenshot",
+                "title": "System MCP: Take Screenshot"
+            },
+            {
+                "command": "systemMcp.tools.refresh",
+                "title": "System MCP: Refresh Tools"
+            },
+            {
+                "command": "systemMcp.tools.run",
+                "title": "System MCP: Run Tool"
+            }
+        ],
         "configuration": {
-            "title": "System MCP",
             "properties": {
-                "systemMcp.server.command": {
-                    "type": "string",
-                    "default": "uv",
-                    "description": "Command to start the MCP server (e.g., 'uv' or 'system-mcp'). On Windows, 'uv' resolves to uv.exe automatically."
-                },
                 "systemMcp.server.args": {
-                    "type": "array",
-                    "default": ["run", "-m", "system_mcp.server"],
-                    "items": { "type": "string" },
-                    "description": "Arguments for the server command. For 'system-mcp', use ['--transport','stdio'] or other transport flags."
+                    "default": [
+                        "run",
+                        "-m",
+                        "system_mcp.server"
+                    ],
+                    "description": "Arguments for the server command. For 'system-mcp', use ['--transport','stdio'] or other transport flags.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
-                "systemMcp.transport": {
-                    "type": "string",
-                    "enum": ["stdio", "sse", "streamable-http"],
-                    "default": "stdio",
-                    "description": "Transport to use when connecting to the server. SSE/HTTP require a URL."
+                "systemMcp.server.command": {
+                    "default": "uv",
+                    "description": "Command to start the MCP server (e.g., 'uv' or 'system-mcp'). On Windows, 'uv' resolves to uv.exe automatically.",
+                    "type": "string"
                 },
                 "systemMcp.server.url": {
-                    "type": "string",
                     "default": "http://127.0.0.1:3000",
-                    "description": "Base URL for SSE/Streamable HTTP transports when not using stdio."
-                }
-            }
-        },
-                "views": {
-                    "systemMcp": [
-                        { "id": "systemMcp.toolsView", "name": "Tools", "icon": "media/system-mcp.svg" }
-                    ]
+                    "description": "Base URL for SSE/Streamable HTTP transports when not using stdio.",
+                    "type": "string"
                 },
-        "commands": [
-            { "command": "systemMcp.connect", "title": "System MCP: Connect" },
-            { "command": "systemMcp.tools.list", "title": "System MCP: List Tools" },
-            { "command": "systemMcp.tools.screenshot", "title": "System MCP: Take Screenshot" },
-            { "command": "systemMcp.tools.refresh", "title": "System MCP: Refresh Tools" },
-            { "command": "systemMcp.tools.run", "title": "System MCP: Run Tool" }
-        ]
+                "systemMcp.transport": {
+                    "default": "stdio",
+                    "description": "Transport to use when connecting to the server. SSE/HTTP require a URL.",
+                    "enum": [
+                        "stdio",
+                        "sse",
+                        "streamable-http"
+                    ],
+                    "type": "string"
+                }
+            },
+            "title": "System MCP"
+        },
+        "views": {
+            "systemMcp": [
+                {
+                    "icon": "media/system-mcp.svg",
+                    "id": "systemMcp.toolsView",
+                    "name": "Tools"
+                }
+            ]
+        },
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "icon": "media/system-mcp.svg",
+                    "id": "systemMcp",
+                    "title": "System MCP"
+                }
+            ]
+        }
     },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "package": "vsce package",
-        "lint": "eslint -c .eslintrc.json .",
-        "release": "standard-version"
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.18.1"
     },
+    "description": "VS Code extension that connects to the System MCP Windows server to control cursor, windows, UIA, and screenshots.",
     "devDependencies": {
         "@types/node": "^20.19.17",
         "@types/vscode": "^1.104.0",
@@ -80,10 +97,22 @@
         "standard-version": "^9.5.0",
         "typescript": "^5.9.2"
     },
-    "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.18.1"
+    "displayName": "System MCP (Windows)",
+    "engines": {
+        "vscode": "^1.90.0"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "main": "./dist/extension.js",
+    "name": "system-mcp-vscode",
+    "publisher": "arunprakashg",
+    "scripts": {
+        "compile": "tsc -p ./",
+        "lint": "eslint -c .eslintrc.json .",
+        "package": "vsce package",
+        "release": "standard-version",
+        "vscode:prepublish": "npm run compile",
+        "watch": "tsc -watch -p ./"
+    },
+    "version": "0.1.0"
 }
