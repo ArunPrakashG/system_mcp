@@ -1,0 +1,51 @@
+name: Prepare Extension Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to bump (e.g., 0.1.1)'
+        required: true
+      tag:
+        description: 'Tag to create (e.g., vscode-v0.1.1)'
+        required: true
+
+jobs:
+  prepare:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        working-directory: ./vscode-extension
+        run: |
+          npm ci
+
+      - name: Bump version & generate changelog
+        working-directory: ./vscode-extension
+        run: |
+          npx --no-install standard-version --release-as $env:RELEASE_VERSION
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add vscode-extension/package.json vscode-extension/CHANGELOG.md
+          git commit -m "chore(release): vscode-extension v${{ inputs.version }}"
+
+      - name: Create tag
+        run: |
+          git tag ${{ inputs.tag }}
+          git push origin HEAD:main --follow-tags

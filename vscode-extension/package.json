@@ -10,29 +10,64 @@
     "categories": [
         "Other"
     ],
+    "main": "./dist/extension.js",
     "contributes": {
-        "commands": [
-            {
-                "command": "systemMcp.connect",
-                "title": "System MCP: Connect"
+            "viewsContainers": {
+                "activitybar": [
+                    {
+                        "id": "systemMcp",
+                        "title": "System MCP",
+                        "icon": "media/system-mcp.svg"
+                    }
+                ]
             },
-            {
-                "command": "systemMcp.tools.list",
-                "title": "System MCP: List Tools"
-            },
-            {
-                "command": "systemMcp.tools.screenshot",
-                "title": "System MCP: Take Screenshot"
+        "configuration": {
+            "title": "System MCP",
+            "properties": {
+                "systemMcp.server.command": {
+                    "type": "string",
+                    "default": "uv",
+                    "description": "Command to start the MCP server (e.g., 'uv' or 'system-mcp'). On Windows, 'uv' resolves to uv.exe automatically."
+                },
+                "systemMcp.server.args": {
+                    "type": "array",
+                    "default": ["run", "-m", "system_mcp.server"],
+                    "items": { "type": "string" },
+                    "description": "Arguments for the server command. For 'system-mcp', use ['--transport','stdio'] or other transport flags."
+                },
+                "systemMcp.transport": {
+                    "type": "string",
+                    "enum": ["stdio", "sse", "streamable-http"],
+                    "default": "stdio",
+                    "description": "Transport to use when connecting to the server. SSE/HTTP require a URL."
+                },
+                "systemMcp.server.url": {
+                    "type": "string",
+                    "default": "http://127.0.0.1:3000",
+                    "description": "Base URL for SSE/Streamable HTTP transports when not using stdio."
+                }
             }
+        },
+                "views": {
+                    "systemMcp": [
+                        { "id": "systemMcp.toolsView", "name": "Tools", "icon": "media/system-mcp.svg" }
+                    ]
+                },
+        "commands": [
+            { "command": "systemMcp.connect", "title": "System MCP: Connect" },
+            { "command": "systemMcp.tools.list", "title": "System MCP: List Tools" },
+            { "command": "systemMcp.tools.screenshot", "title": "System MCP: Take Screenshot" },
+            { "command": "systemMcp.tools.refresh", "title": "System MCP: Refresh Tools" },
+            { "command": "systemMcp.tools.run", "title": "System MCP: Run Tool" }
         ]
     },
-    "main": "./dist/extension.js",
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "package": "vsce package",
-        "lint": "eslint -c .eslintrc.json ."
+        "lint": "eslint -c .eslintrc.json .",
+        "release": "standard-version"
     },
     "devDependencies": {
         "@types/node": "^20.19.17",
@@ -40,7 +75,9 @@
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
         "@vscode/vsce": "^3.6.0",
+        "conventional-changelog-cli": "^4.1.0",
         "eslint": "^8.57.1",
+        "standard-version": "^9.5.0",
         "typescript": "^5.9.2"
     },
     "dependencies": {
