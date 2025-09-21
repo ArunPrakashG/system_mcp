@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "MCP server exposing Windows-native mouse, window, UIA, and screenshot tools"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "Arun Prakash" }]
 license = { text = "MIT" }
 keywords = ["mcp", "windows", "automation", "uiautomation", "screenshot"]
 dependencies = [
@@ -66,3 +66,6 @@ package = true
 
 [dependency-groups]
 dev = ["ruff>=0.5.0"]
+
+[project.scripts]
+system-mcp = "system_mcp.__main__:main"

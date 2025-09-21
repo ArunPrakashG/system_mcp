@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.21.1"]
+build-backend = "hatchling.build"
+
+[project]
+name = "system-mcp-wrapper"
+version = "0.1.0"
+description = "Tiny wrapper that installs and exposes the system-mcp CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Arun Prakash" }]
+license = { text = "MIT" }
+keywords = ["mcp", "windows", "automation"]
+dependencies = [
+    # Install the GitHub repo as a dependency (pin your tag in README)
+    "system-mcp @ git+https://github.com/ArunPrakashG/system_mcp.git@v0.1.0",
+]
+
+[project.scripts]
+system-mcp = "system_mcp.__main__:main"

@@ -1,10 +1,13 @@
+LICENSE
 README.md
 pyproject.toml
 src/system_mcp/__init__.py
+src/system_mcp/__main__.py
 src/system_mcp/server.py
 src/system_mcp.egg-info/PKG-INFO
 src/system_mcp.egg-info/SOURCES.txt
 src/system_mcp.egg-info/dependency_links.txt
+src/system_mcp.egg-info/entry_points.txt
 src/system_mcp.egg-info/requires.txt
 src/system_mcp.egg-info/top_level.txt
 src/system_mcp/win/mouse.py
