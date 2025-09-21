@@ -1,52 +1,52 @@
 {
-  "name": "system-mcp-vscode",
-  "displayName": "System MCP (Windows)",
-  "publisher": "arunprakashg",
-  "description": "VS Code extension that connects to the System MCP Windows server to control cursor, windows, UIA, and screenshots.",
-  "version": "0.1.0",
-  "engines": {
-    "vscode": "^1.90.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "contributes": {
-    "commands": [
-      {
-        "command": "systemMcp.connect",
-        "title": "System MCP: Connect"
-      },
-      {
-        "command": "systemMcp.tools.list",
-        "title": "System MCP: List Tools"
-      },
-      {
-        "command": "systemMcp.tools.screenshot",
-        "title": "System MCP: Take Screenshot"
-      }
-    ]
-  },
-  "main": "./dist/extension.js",
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "package": "vsce package",
-    "lint": "eslint -c .eslintrc.json ."
-  },
-  "devDependencies": {
-    "@types/node": "^20.19.17",
-    "@types/vscode": "^1.104.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
-    "typescript": "^5.9.2",
-    "vsce": "^2.15.0"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.18.1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "system-mcp-vscode",
+    "displayName": "System MCP (Windows)",
+    "publisher": "arunprakashg",
+    "description": "VS Code extension that connects to the System MCP Windows server to control cursor, windows, UIA, and screenshots.",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.90.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "systemMcp.connect",
+                "title": "System MCP: Connect"
+            },
+            {
+                "command": "systemMcp.tools.list",
+                "title": "System MCP: List Tools"
+            },
+            {
+                "command": "systemMcp.tools.screenshot",
+                "title": "System MCP: Take Screenshot"
+            }
+        ]
+    },
+    "main": "./dist/extension.js",
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package",
+        "lint": "eslint -c .eslintrc.json ."
+    },
+    "devDependencies": {
+        "@types/node": "^20.19.17",
+        "@types/vscode": "^1.104.0",
+        "@typescript-eslint/eslint-plugin": "^7.18.0",
+        "@typescript-eslint/parser": "^7.18.0",
+        "@vscode/vsce": "^3.6.0",
+        "eslint": "^8.57.1",
+        "typescript": "^5.9.2"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.18.1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
