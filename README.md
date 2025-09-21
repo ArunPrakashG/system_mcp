@@ -71,4 +71,4 @@ Coordinates are screen coordinates. Screenshot returns base64 image data; decode
 
 ## License
 
-MIT
+This project is licensed under the MIT License — see the `LICENSE` file for details.

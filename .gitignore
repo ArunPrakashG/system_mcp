@@ -1,3 +1,55 @@
-/.ruff_cache
-/.venv
-/__pycache__
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Build artifacts
+build/
+dist/
+wheels/
+sdist/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+share/python-wheels/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Linters / type checkers
+.ruff_cache/
+.mypy_cache/
+.pytype/
+.pyre/
+
+# IDE / editor
+.idea/
+*.code-workspace
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Node (if MCP Inspector or tools install locally)
+node_modules/
+
+# Logs
+*.log
+
+# Env files (keep examples tracked if any)
+.env
+.env.*
+!.env.example
+
+# uv: keep lockfile tracked
+!uv.lock
