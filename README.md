@@ -9,58 +9,16 @@ An MCP server exposing Windows-native capabilities:
 
 Built with Python, uv, Ruff, and the official `mcp` Python SDK.
 
-## Using in VS Code
+## Documentation 📚
 
-Follow these steps to install and use this MCP server entirely from VS Code on Windows:
+The full documentation lives in the GitHub Wiki:
 
-1. Open the folder
-
-- File > Open Folder… and pick this repository.
-
-2. Install dependencies (once)
-
-- Open the integrated Terminal (PowerShell) and run:
-  ```powershell
-  uv sync
-  ```
-
-3. Run the server via a VS Code Task
-
-- From the Command Palette: "Tasks: Run Task" → choose "Run MCP server (uv)".
-- This starts the MCP server over stdio using `uv run -m system_mcp.server`.
-
-4. Inspect and debug tools with MCP Inspector (interactive)
-
-- In the VS Code Terminal, run:
-  ```powershell
-  .scripts/dev.ps1
-  ```
-- Your browser opens the Inspector; choose the stdio session and try tools like:
-  - "Mouse: Get Position"
-  - "Window: List"
-  - "UIA: Text Under Cursor"
-  - "Screen: Take Screenshot"
-
-5. Programmatic smoke test (optional)
-
-- Run the sample client from the Terminal to exercise all tools:
-  ```powershell
-  uv run examples/call_tools.py
-  ```
-
-6. Debugging tips
-
-- You can set breakpoints in files under `src/system_mcp/**` and run the server via the task; logs and tracebacks will appear in the Terminal.
-- For step-through debugging, you can also create a `launch.json` that runs the module `system_mcp.server`. (Optional; not required for normal use.)
-
-Troubleshooting
-
-- PowerShell policies: If scripts don’t run, execute the dev script like this to bypass policy for the current invocation:
-  ```powershell
-  powershell -NoProfile -ExecutionPolicy Bypass -File .scripts/dev.ps1
-  ```
-- UAC/Admin: Some UI Automation or window operations may require running VS Code or your MCP client as Administrator.
-- uv on PATH: Ensure `uv` is installed and available (`uv --version`).
+- 🚀 Installation & Setup: wiki/Installation-&-Setup
+- 🧰 VS Code Guide: wiki/VS-Code-Guide
+- 🔌 CLI Usage: wiki/CLI-Usage
+- 🔁 Cross-Project Usage: wiki/Cross-Project-Usage
+- 🧪 Tools Reference: wiki/Tools-&-Capabilities
+- 🛠️ Troubleshooting: wiki/Troubleshooting-&-Tips
 
 ## Requirements
 
