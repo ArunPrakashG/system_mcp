@@ -1,0 +1,6 @@
+src/**
+**/*.map
+**/*.ts
+**/*.log
+.github/**
+.gitignore
