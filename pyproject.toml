@@ -1,0 +1,68 @@
+[project]
+name = "system-mcp"
+version = "0.1.0"
+description = "MCP server exposing Windows-native mouse, window, UIA, and screenshot tools"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+license = { text = "MIT" }
+keywords = ["mcp", "windows", "automation", "uiautomation", "screenshot"]
+dependencies = [
+    "mcp[cli]>=1.14.1",
+    "uiautomation>=2.0.20",
+    "mss>=9.0.1",
+    "pillow>=10.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/system_mcp"
+Repository = "https://github.com/your-org/system_mcp"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+preview = true
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",   # pycodestyle/pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "C4",  # flake8-comprehensions
+    "PTH", # flake8-use-pathlib
+    "PLC",
+    "PLE",
+    "PLW", # pylint subset
+]
+ignore = [
+    "PLR0913", # too-many-arguments (common for tools)
+    "PLR2004", # magic-value-comparison
+]
+per-file-ignores = { "src/system_mcp/server.py" = ["PLR0915"] }
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+known-first-party = ["system_mcp"]
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = ["ruff>=0.5.0"]
